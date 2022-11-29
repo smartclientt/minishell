@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:21:22 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/23 15:44:48 by shbi             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:42:21 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	b_pwd(t_env	*menv)
 	if (!pwd_node)
 		printf("%s\n", getcwd(pwd, sizeof(pwd)));
 	else
-		printf("%s\n", pwd_node->key);
+		printf("%s\n", pwd_node->value);
 }

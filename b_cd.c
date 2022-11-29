@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builting_cd.c                                      :+:      :+:    :+:   */
+/*   b_cd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 04:21:36 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/20 14:57:43 by shbi             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:50:22 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	new_pwd_and_oldpwd(t_env **menv)
 	t_env	*oldpwd;
 	char	pwd_str[PATH_MAX];
 
-	pwd = find_key_node(*menv, "PWD");
+	pwd = find_key_node(*menv, ft_strdup("PWD"));
 	if (!pwd)
 		add_pwd_to_env(menv);
 	else
 	{
-		oldpwd = find_key_node(*menv, "OLDPWD");
+		oldpwd = find_key_node(*menv, ft_strdup("OLDPWD"));
 		if (!oldpwd)
 			add_oldpwd_to_env(menv, pwd);
 		else
@@ -93,4 +93,5 @@ void	b_cd(t_env **menv, char *path)
 				new_pwd_and_oldpwd(menv);
 		}
 	}
+	system("leaks minishell");
 }
