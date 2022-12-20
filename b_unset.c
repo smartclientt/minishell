@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:44:39 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/23 15:16:29 by shbi             ###   ########.fr       */
+/*   Updated: 2022/11/30 13:16:22 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_env	*remove_node(t_env *menv, char *key)
 {
 	t_env	*next;
 	t_env	*new_env;
-	// int i = 0;
 
 	new_env = NULL;
 	while (menv)

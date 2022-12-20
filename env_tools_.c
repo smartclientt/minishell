@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 02:48:49 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/22 17:26:21 by shbi             ###   ########.fr       */
+/*   Updated: 2022/11/30 13:17:23 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_env(t_env *menv)
 
 char	*find_value_with_key(t_env *menv, char *key)
 {
-	// error if no key in the env;
+	// i need to check error if no key in the env;
 	while (menv)
 	{
 		if (ft_strcmp(menv->key, key) == 1
@@ -49,7 +49,7 @@ char	*find_value_with_key(t_env *menv, char *key)
 
 t_env	*find_key_node(t_env *menv, char *key)
 {
-	// error if no key in the env;
+	// i need to check error error if no key in the env;
 	while (menv)
 	{
 		if (ft_strcmp(menv->key, key) == 1

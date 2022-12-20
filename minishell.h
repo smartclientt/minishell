@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/20 09:13:18 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/20 13:10:07 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,11 @@ void	first_cmd(int fd[2], int prev_in, int prev_out);
 void	between_cmd(int fd[2], int prev_in, int prev_out);
 void	last_cmd(int fd[2], int prev_in, int prev_out);
 void	run_cmd(t_env *menv, char **cmd);
+
+// check cmds if valid
+int		check_access_cmd(char *path);
+void	free_path_env(char **path_env);
+int		cmd_is_path(char *cmd);
+char	*check_cmd_access(t_env *menv, char *cmd);
 
 #endif

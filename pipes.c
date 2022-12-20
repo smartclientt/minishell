@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:16:50 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/20 09:21:26 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:17:31 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,15 @@ void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr)
 		id = fork();
 		if (id == 0)
 		{
-			printf("first cmd = %s\n", cmd[i][0]);
-			if (i == 0)
-				first_cmd(fd, prev_in, prev_out);
-			else if (i + 1 == cmd_nbr)
-				last_cmd(fd, prev_in, prev_out);
-			else
-				between_cmd(fd, prev_in, prev_out);
+			if (1 != cmd_nbr)
+			{
+				if (i == 0)
+					first_cmd(fd, prev_in, prev_out);
+				else if (i + 1 == cmd_nbr)
+					last_cmd(fd, prev_in, prev_out);
+				else
+					between_cmd(fd, prev_in, prev_out);
+			}
 			run_cmd(menv, cmd[i]);
 		}
 		close(prev_in);
