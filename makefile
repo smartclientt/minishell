@@ -6,7 +6,7 @@
 #    By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 01:50:38 by shbi              #+#    #+#              #
-#    Updated: 2022/11/23 15:27:40 by shbi             ###   ########.fr        #
+#    Updated: 2022/12/20 08:17:55 by shbi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	minishell
 SRCS		=	minishell.c														\
 				env_tools.c env_tools_.c tools.c								\
 				b_echo.c b_cd.c b_env.c	b_pwd.c b_export.c b_unset.c			\
-				error_case.c 	
+				error_case.c pipes.c
 				
 OBJS		=	$(SRCS:.c=.o)
 HEADR		=	minishell.h

@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/28 18:58:10 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/20 09:13:18 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,11 @@ void	b_pwd(t_env	*menv);
 // error case
 void	error_msg(const char *error_msg);
 
+// multi pipes
+void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr);
+void	first_cmd(int fd[2], int prev_in, int prev_out);
+void	between_cmd(int fd[2], int prev_in, int prev_out);
+void	last_cmd(int fd[2], int prev_in, int prev_out);
+void	run_cmd(t_env *menv, char **cmd);
 
 #endif
