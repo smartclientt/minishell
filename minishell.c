@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:40 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/20 21:18:29 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 11:45:48 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,33 @@ int	main(int ac, char **av, char **env)
 
 	char **cmd1;
 	cmd1 = malloc(sizeof(char *) * 2);
-	cmd1[0] = "/bin/cat";
+	cmd1[0] = "ls";
 	cmd1[1] = NULL;
 
 	char **cmd2;
 	cmd2 = malloc(sizeof(char *) * 2);
-	cmd2[0] = "/bin/ls";
+	cmd2[0] = "";
 	cmd2[1] = NULL;
 
 
 	char **cmd3;
 	cmd3 = malloc(sizeof(char *) * 2);
-	cmd3[0] = "/usr/bin/wc";
+	cmd3[0] = "";
 	cmd3[1] = NULL;
 
 	char **cmd4;
 	cmd4 = malloc(sizeof(char *) * 2);
-	cmd4[0] = "/bin/ls";
+	cmd4[0] = "wc";
 	cmd4[1] = NULL;
 
 
 	size_t cmds_n = 4;
-	char ***cmds = malloc(sizeof(char **) * cmds_n);
+	char ***cmds = malloc(sizeof(char **) * cmds_n + 1);
 	cmds[0] = cmd1;
 	cmds[1] = cmd2;
 	cmds[2] = cmd3;
 	cmds[3] = cmd4;
-
+	cmds[4] = NULL;
 
 	fill_env(&menv, env);
 	// printf("----------------------------------\n");
@@ -65,12 +65,13 @@ int	main(int ac, char **av, char **env)
 	// printf("----------------------------------\n");
 	// b_pwd(menv);
 	// printf("----------------------------------\n");
-	multi_pipes(menv, cmds, 3);
-	printf("----------------------------------\n");
-	char	*path;
+	// multi_pipes(menv, cmds, 2);
+	execution(menv, cmds);
+	// printf("----------------------------------\n");
+	// char	*path;
 
-	path = check_cmd_access(menv, cmd2[0]);
-	printf("path = %s\n", path);
-	system("leaks minishell");
+	// path = check_cmd_access(menv, cmd1[0]);
+	// printf("path = %s\n", path);
+	// system("leaks minishell");
 	return (0);
 }

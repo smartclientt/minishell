@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 09:49:18 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/23 08:42:58 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/21 08:53:03 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	env_size(t_env *lst)
 	return (c);
 }
 
-char	**env_to_array(t_env *menv)
+char	**key_env_to_array(t_env *menv)
 {
 	char	**str_env;
 	int		i;
@@ -60,6 +60,30 @@ char	**env_to_array(t_env *menv)
 	while (menv)
 	{
 		str_env[i] = ft_strdup(menv->key);
+		if (!str_env[i])
+			ft_free(str_env);
+		i++;
+		menv = menv->next;
+	}
+	str_env[i] = NULL;
+	return (str_env);
+}
+
+char	**env_to_array(t_env *menv)
+{
+	char	**str_env;
+	char	*temp;
+	int		i;
+
+	str_env = malloc(sizeof(char *) * (env_size(menv) + 1));
+	if (!str_env)
+		return (NULL);
+	i = 0;
+	while (menv)
+	{
+		temp = ft_strjoin(menv->key, "=");
+		str_env[i] = ft_strjoin(temp, menv->value);
+		free(temp);
 		if (!str_env[i])
 			ft_free(str_env);
 		i++;
@@ -111,7 +135,7 @@ t_env	*print_sorted_env(t_env *menv)
 	char	**sorted;
 	int		i;
 
-	sorted = sorted_array(env_to_array(menv));
+	sorted = sorted_array(key_env_to_array(menv));
 	i = 0;
 	while (sorted[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:16:50 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/20 19:17:31 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 12:02:32 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	between_cmd(int fd[2], int prev_in, int prev_out)
 	close(prev_out);
 	//read
 	if (dup2(prev_in, 0) == -1)
-		error_msg("error dup between cmd\n");
+		error_msg("2-error dup between cmd\n");
 	close(prev_in);
 	//write
 	if (dup2(fd[1], 1) == -1)
-		error_msg("error dup between cmd\n");
+		error_msg("1-error dup between cmd\n");
 	close(fd[1]);
 }
 
@@ -47,8 +47,22 @@ void	last_cmd(int fd[2], int prev_in, int prev_out)
 
 void	run_cmd(t_env *menv, char **cmd)
 {
-	if (execve(cmd[0], cmd, env_to_array(menv)) == -1)
-		error_msg("error execution cmd\n");
+	int	checker;
+
+	checker = check_access_path(cmd[0]);
+	if (checker == 1)
+	{
+		if (execve(cmd[0], cmd, env_to_array(menv)) == -1)
+			perror("minishell");
+	}
+	else if (checker == -1)
+		exit(126);
+	else if (checker == 0)
+		exit(127);
+	else if (checker == -2)
+		exit(50);
+	else if (checker == -3)
+		exit(110);
 }
 
 void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr)

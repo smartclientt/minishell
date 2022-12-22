@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:41:38 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/20 19:56:25 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 12:03:56 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,21 @@ if the cmd is a simple cmd
 			->	if not exist print error
 */
 
-int	check_access_cmd(char *path)
+int	check_access_path(char *path)
 {
-	if (!access(path, F_OK))
+	if (!*path)
+		return (-3);
+	else if (!cmd_is_path(path))
+		return (-2);
+	else
 	{
-		if (!access(path, X_OK))
-			return (1);
-		else
-			return (-1);
+		if (!access(path, F_OK))
+		{
+			if (!access(path, X_OK))
+				return (1);
+			else
+				return (-1);
+		}
 	}
 	return (0);
 }
@@ -70,9 +77,9 @@ char	*check_cmd_access(t_env *menv, char *cmd)
 	char	*path;
 	int		i;
 
-	if (!*cmd)
-		exit(127);
-	if (!cmd_is_path(cmd))
+	if(!*cmd)
+		error_msg(": permissiom denied: \n");
+	else if (!cmd_is_path(cmd))
 	{
 		path_env = ft_split(find_value_with_key(menv, "PATH"), ':');
 		first_cmd = ft_strjoin("/", cmd);
@@ -80,7 +87,7 @@ char	*check_cmd_access(t_env *menv, char *cmd)
 		while (path_env[i])
 		{
 			path = ft_strjoin(path_env[i], first_cmd);
-			if (check_access_cmd(path) == 1)
+			if (check_access_path(path) == 1)
 			{
 				free(first_cmd);
 				free_path_env(path_env);
@@ -89,19 +96,18 @@ char	*check_cmd_access(t_env *menv, char *cmd)
 			free(path);
 			i++;
 		}
-		perror("minishell: ");
 		free(first_cmd);
 		free_path_env(path_env);
-		exit(127);
+		error_msg(": command not found: \n");
 	}
 	else
 	{
-		if (check_access_cmd(cmd) == 1)
+		if (check_access_path(cmd) == 1)
 			return (cmd);
-		else if (check_access_cmd(cmd) == -1)
-			exit(126);
-		else if (check_access_cmd(cmd) == 0)
-			exit(127);
+		else if (check_access_path(cmd) == -1)
+			error_msg(": Permession denied\n");
+		else if (check_access_path(cmd) == 0)
+			error_msg(": No such file or directory\n");
 	}
-	return (NULL);
+	return (cmd);
 }
