@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 04:21:36 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/23 18:50:22 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 17:41:13 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,4 @@ void	b_cd(t_env **menv, char *path)
 				new_pwd_and_oldpwd(menv);
 		}
 	}
-	system("leaks minishell");
 }

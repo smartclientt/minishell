@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/21 09:38:13 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 19:55:56 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	new_pwd_and_oldpwd(t_env **menv);
 void	add_oldpwd_to_env(t_env **menv, t_env *pwd);
 void	add_pwd_to_env(t_env **menv);
 
+int		is_builted(char **args);
+void	exec_builted(t_env *menv, char **args);
+
 void	b_export(t_env **menv, char **args);
 int		cmp_key(char *s1, char *s2);
 int		env_size(t_env *lst);
@@ -87,7 +90,8 @@ int		cmd_is_path(char *cmd);
 char	*check_cmd_access(t_env *menv, char *cmd);
 
 // execution
-void	execution(t_env *menv, char ***cmds);
+void	execution(t_env *menv, char ***cmds, int cmd_nbr);
 char	*update_cmd_path(t_env *menv, char **cmds);
+
 
 #endif

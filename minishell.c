@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:40 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/22 11:45:48 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 20:03:36 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ int	main(int ac, char **av, char **env)
 
 	char **cmd1;
 	cmd1 = malloc(sizeof(char *) * 2);
-	cmd1[0] = "ls";
+	cmd1[0] = "cd";
 	cmd1[1] = NULL;
 
 	char **cmd2;
 	cmd2 = malloc(sizeof(char *) * 2);
-	cmd2[0] = "";
+	cmd2[0] = "ls";
 	cmd2[1] = NULL;
 
 
 	char **cmd3;
 	cmd3 = malloc(sizeof(char *) * 2);
-	cmd3[0] = "";
+	cmd3[0] = "ls";
 	cmd3[1] = NULL;
 
 	char **cmd4;
@@ -59,14 +59,16 @@ int	main(int ac, char **av, char **env)
 
 	fill_env(&menv, env);
 	// printf("----------------------------------\n");
-	// // b_cd(&menv, str[1]);
-	// // b_cd(&menv, str[0]);
 	// b_export(&menv, NULL);
+	// b_cd(&menv, str[0]);
+	// printf("----------------------------------\n");
+	// b_cd(&menv, str[0]);
 	// printf("----------------------------------\n");
 	// b_pwd(menv);
 	// printf("----------------------------------\n");
 	// multi_pipes(menv, cmds, 2);
-	execution(menv, cmds);
+	execution(menv, cmds, 2);
+	// b_export(&menv, NULL);
 	// printf("----------------------------------\n");
 	// char	*path;
 

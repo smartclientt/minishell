@@ -6,7 +6,7 @@
 #    By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 01:50:38 by shbi              #+#    #+#              #
-#    Updated: 2022/12/21 09:41:33 by shbi             ###   ########.fr        #
+#    Updated: 2022/12/22 19:02:10 by shbi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME		=	minishell
 SRCS		=	minishell.c														\
 				env_tools.c env_tools_.c tools.c								\
 				b_echo.c b_cd.c b_env.c	b_pwd.c b_export.c b_unset.c			\
-				error_case.c pipes.c check_cmd.c execution.c
-				
+				error_case.c pipes.c check_cmd.c execution.c exec_builted.c
+
 OBJS		=	$(SRCS:.c=.o)
 HEADR		=	minishell.h
 LIBFT		=	./libft/libft.a

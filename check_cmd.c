@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:41:38 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/22 12:03:56 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 19:12:55 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char	*check_cmd_access(t_env *menv, char *cmd)
 
 	if(!*cmd)
 		error_msg(": permissiom denied: \n");
+	else if (is_builted(&cmd))
+		;
 	else if (!cmd_is_path(cmd))
 	{
 		path_env = ft_split(find_value_with_key(menv, "PATH"), ':');
@@ -105,7 +107,7 @@ char	*check_cmd_access(t_env *menv, char *cmd)
 		if (check_access_path(cmd) == 1)
 			return (cmd);
 		else if (check_access_path(cmd) == -1)
-			error_msg(": Permession denied\n");
+			error_msg(": permession denied\n");
 		else if (check_access_path(cmd) == 0)
 			error_msg(": No such file or directory\n");
 	}

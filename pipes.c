@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:16:50 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/22 12:02:32 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/22 19:52:46 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,24 @@ void	run_cmd(t_env *menv, char **cmd)
 {
 	int	checker;
 
-	checker = check_access_path(cmd[0]);
-	if (checker == 1)
+	if (is_builted(cmd))
 	{
-		if (execve(cmd[0], cmd, env_to_array(menv)) == -1)
-			perror("minishell");
+		exec_builted(menv, cmd);
+		exit(0);
 	}
-	else if (checker == -1)
-		exit(126);
-	else if (checker == 0)
-		exit(127);
-	else if (checker == -2)
-		exit(50);
-	else if (checker == -3)
-		exit(110);
+	else
+	{
+		checker = check_access_path(cmd[0]);
+		if (checker == 1)
+		{
+			if (execve(cmd[0], cmd, env_to_array(menv)) == -1)
+				perror("minishell");
+		}
+		else if (checker == -1 || checker == -3)
+			exit(126);
+		else if (checker == 0 || checker == -2)
+			exit(127);
+	}
 }
 
 void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr)
