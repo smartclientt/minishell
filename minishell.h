@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/22 19:55:56 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/23 10:20:36 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_export_args(char *arg);
 void	b_unset(t_env **menv, char **args);
 t_env	*remove_node(t_env *menv, char *key);
 
-void	b_env(t_env *menv);
+void	b_env(t_env *menv, char **args);
 
 void	b_pwd(t_env	*menv);
 
