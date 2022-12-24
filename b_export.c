@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 09:49:18 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/23 18:15:55 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 12:31:42 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,9 @@ void	b_export(t_env **menv, char **args)
 		i = 0;
 		while (args[i])
 		{
-			if (check_export_args(args[i]) == 0)
+			if (args[i][0] == '\0')
+				ft_putstr_fd("export: not valid in this context:\n", 2);
+			else if (check_export_args(args[i]) == 0)
 				;
 			else if (check_export_args(args[i]) == 1
 				&& !find_key_node(*menv, get_key(args[i])))

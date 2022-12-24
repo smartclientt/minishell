@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:44:39 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/24 10:53:46 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 12:45:53 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_env	*remove_node(t_env *menv, char *key)
 	while (menv)
 	{
 		next = menv->next;
-		// menv->next = NULL;
+		menv->next = NULL;
 		if (cmp_key(menv->key, key) == 0)
 		{
 			free(menv->value);
@@ -38,17 +38,6 @@ t_env	*remove_node(t_env *menv, char *key)
 	free(key);
 	return (new_env);
 }
-
-// t_env	*remove_node(t_env *menv, char *key)
-// {
-// 	t_env	*next;
-// 	t_env	*curr;
-
-// 	while (menv)
-// 	{
-		
-// 	}
-// }
 
 void	b_unset(t_env **menv, char **args)
 {
