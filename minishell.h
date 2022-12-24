@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/24 11:02:58 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 13:30:48 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "./libft/libft.h"
+
+int status;
 
 // tools
 int		ft_strcmp(char *s1, char *s2);

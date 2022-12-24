@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:23:55 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/24 11:03:19 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 20:40:01 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	minishell_loop(t_env **menv)
 
 	while(1)
 	{
+		line = NULL;
 		line = readline("minishell-$ ");
+		if (ft_strcmp("exit", line))
+			exit(0);
 		add_history(line);
 		free(line);
 	}

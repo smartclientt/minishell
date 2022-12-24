@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:16:50 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/24 10:56:17 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 17:02:18 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,8 @@ void	multi_pipes(t_env **menv, char ***cmd, int cmd_nbr)
 		close(prev_out);
 		i++;
 	}
-	while (wait(NULL) != -1);
+	while (wait(&status) != -1);
+	if (WIFEXITED(status))
+		WEXITSTATUS(status);
+	printf("status = %d\n", status % 255);
 }
