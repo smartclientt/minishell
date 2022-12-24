@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:44:39 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/30 13:16:22 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 10:53:46 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_env	*remove_node(t_env *menv, char *key)
 	while (menv)
 	{
 		next = menv->next;
-		menv->next = NULL;
+		// menv->next = NULL;
 		if (cmp_key(menv->key, key) == 0)
 		{
 			free(menv->value);
@@ -39,6 +39,17 @@ t_env	*remove_node(t_env *menv, char *key)
 	return (new_env);
 }
 
+// t_env	*remove_node(t_env *menv, char *key)
+// {
+// 	t_env	*next;
+// 	t_env	*curr;
+
+// 	while (menv)
+// 	{
+		
+// 	}
+// }
+
 void	b_unset(t_env **menv, char **args)
 {
 	int		i;
@@ -53,9 +64,7 @@ void	b_unset(t_env **menv, char **args)
 		while (args[i])
 		{
 			if (find_key_node(new_env, ft_strdup(args[i])))
-				new_env = remove_node(new_env, get_key(args[i]));
-			else
-				printf("error is not key\n");
+				new_env = remove_node(new_env, ft_strdup(args[i]));
 			i++;
 		}
 	}

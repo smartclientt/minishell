@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 18:16:50 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/23 00:15:28 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 10:56:17 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	last_cmd(int fd[2], int prev_in, int prev_out)
 	close(prev_in);
 }
 
-void	run_cmd(t_env *menv, char **cmd)
+void	run_cmd(t_env **menv, char **cmd)
 {
 	int	checker;
 
@@ -59,7 +59,7 @@ void	run_cmd(t_env *menv, char **cmd)
 		checker = check_access_path(cmd[0]);
 		if (checker == 1)
 		{
-			if (execve(cmd[0], cmd, env_to_array(menv)) == -1)
+			if (execve(cmd[0], cmd, env_to_array(*menv)) == -1)
 				perror("minishell");
 		}
 		else if (checker == -1 || checker == -3)
@@ -69,7 +69,7 @@ void	run_cmd(t_env *menv, char **cmd)
 	}
 }
 
-void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr)
+void	multi_pipes(t_env **menv, char ***cmd, int cmd_nbr)
 {
 	int	i;
 	int	prev_in;

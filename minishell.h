@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 01:50:42 by shbi              #+#    #+#             */
-/*   Updated: 2022/12/23 10:20:36 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/24 11:02:58 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "./libft/libft.h"
 
 // tools
@@ -54,7 +56,7 @@ void	add_oldpwd_to_env(t_env **menv, t_env *pwd);
 void	add_pwd_to_env(t_env **menv);
 
 int		is_builted(char **args);
-void	exec_builted(t_env *menv, char **args);
+void	exec_builted(t_env **menv, char **args);
 
 void	b_export(t_env **menv, char **args);
 int		cmp_key(char *s1, char *s2);
@@ -77,11 +79,11 @@ void	b_pwd(t_env	*menv);
 void	error_msg(const char *error_msg);
 
 // multi pipes
-void	multi_pipes(t_env *menv, char ***cmd, int cmd_nbr);
+void	multi_pipes(t_env **menv, char ***cmd, int cmd_nbr);
 void	first_cmd(int fd[2], int prev_in, int prev_out);
 void	between_cmd(int fd[2], int prev_in, int prev_out);
 void	last_cmd(int fd[2], int prev_in, int prev_out);
-void	run_cmd(t_env *menv, char **cmd);
+void	run_cmd(t_env **menv, char **cmd);
 
 // check cmds if valid
 int		check_access_path(char *path);
@@ -90,8 +92,10 @@ int		cmd_is_path(char *cmd);
 char	*check_cmd_access(t_env *menv, char *cmd);
 
 // execution
-void	execution(t_env *menv, char ***cmds, int cmd_nbr);
+void	execution(t_env **menv, char ***cmds, int cmd_nbr);
 char	*update_cmd_path(t_env *menv, char **cmds);
 
+// minishell loop
+void	minishell_loop(t_env **menv);
 
 #endif

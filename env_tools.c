@@ -6,7 +6,7 @@
 /*   By: shbi <shbi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 05:45:34 by shbi              #+#    #+#             */
-/*   Updated: 2022/11/23 15:07:05 by shbi             ###   ########.fr       */
+/*   Updated: 2022/12/23 18:52:40 by shbi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_key(char *env)
 	i = 0;
 	while (env[i] && env[i] != '=')
 		i++;
-	key = (char *)malloc(sizeof(char) * (i));
+	key = (char *)malloc(sizeof(char) * (i + 1));
 	if (!key)
 		return (NULL);
 	i = 0;
